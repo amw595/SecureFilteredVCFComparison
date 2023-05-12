@@ -1,0 +1,17 @@
+from Compiler.types import sint, Array
+from Compiler.library import print_ln
+
+m = 1000
+
+a = Array(m, sint)
+b = Array(m, sint)
+c = Array(m, sint)
+
+a.input_from(0)
+b.input_from(1)
+
+c[:] = a[:] + b[:] - 2*a[:]*b[:]
+
+d = sum(c)
+
+print_ln('%s', d.reveal())
