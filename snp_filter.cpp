@@ -257,6 +257,7 @@ std::string get_chrom_pos_rm_chr(const std::vector<std::string>& values)
 {
 	if (values.size() > 1)
 		return combine_strings(values[0].substr(3), values[1]);
+	return "";
 }
 
 inline
