@@ -1,7 +1,7 @@
 from Compiler.types import sint, Array
 from Compiler.library import print_ln
 
-m = 1000
+m = 4763
 
 a = Array(m, sint)
 b = Array(m, sint)
