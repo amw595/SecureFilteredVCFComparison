@@ -56,9 +56,33 @@ You need at least three separate machines. On each machine, make sure that you c
 192.0.2.1:5002
 ```
 
-Where you would replace the ip addresses here with addresses used by your machines. 
+Where you would replace the ip addresses here with addresses used by your machines. We will refer to this file as `sample_ip_file.txt` and you will replace with your own file and file name.
 
-Now, if every machine can run the above steps locally, then the only thing left to do here, is to make sure every machine here shares the same keys. A simple way to do that for experimental purposes only would be to have one machine create the keys locally and distribute them to the other machines. Using the above machines as examples, running a command requires the following commands:
+Now, if every machine can run the above steps locally, then the only thing left to do here, is to make sure every machine here shares the same keys. A simple way to do that for experimental purposes only would be to have one machine create the keys locally and distribute them to the other machines. Using the above machines as examples we give a quick overview on the update to running the code over the `Scripts/...` method above. First note that only machine `192.0.2.0` needs `Player-Data/Input-P0-0` file populated, and `192.0.2.1` needs `Player-Data/Input-P1-0` file populated.
+
+The machine with the IP address 192.0.2.0 will run the command
+```
+./shamir-party.x 0 jaccard_similarity --ip-file-name sample_ip_file.txt -N 3
+```
+
+The machine with the IP address 192.0.2.1 will run the command
+```
+./shamir-party.x 1 jaccard_similarity --ip-file-name sample_ip_file.txt -N 3
+```
+
+The machine with the IP address 192.0.2.2 will run the command
+```
+./shamir-party.x 2 jaccard_similarity --ip-file-name sample_ip_file.txt -N 3
+```
+
+The first argument in the bash command is the executable. The second is the id marker for the party (machine) used in the protocol. The third is the indicator that you will provide an ip-file and the last is indicating how many parties will participate. Until each party participates the program will wait until a timeout. Do not forget that some protocols like `shamir-party.x` will require a minimum of 3 parties while others like `mascot-party.x` and `semi-party.x` only need 2.
+
+You can replace `./shamir-party.x` with the following to replicate our experiments
+* `./malicious-shamir-party.x` corresponds with `Scripts/mal-shamir.sh`
+* `./semi-party.x` corresponds with `Scripts/semi.sh`
+* `./mascot-party.x` corresponds with `Scripts/mascot.sh`
+
+The only other thing you would need to change is the number of players using the `-N` argument as in the examples above.
 
 
 The experiment we ran had the following steps:
