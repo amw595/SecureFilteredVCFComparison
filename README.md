@@ -95,4 +95,3 @@ To generate the input files `HG00*_4700.txt`:
 * Filter the SNPs using snp_filter.cpp
  * Make sure to update the file to know where the files are
  * File includes details on what it expects for the update
- * 
